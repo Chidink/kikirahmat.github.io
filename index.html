@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Edukasi Bahasa Inggris</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+        // Your Firebase configuration
+        const firebaseConfig = {
+        apiKey: "AIzaSyB5LEbNez7pnc6_PHi0cQpoT8PyysfdsPs",
+        authDomain: "game-bahasa-inggris.firebaseapp.com",
+        databaseURL: "https://game-bahasa-inggris-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "game-bahasa-inggris",
+        storageBucket: "game-bahasa-inggris.firebasestorage.app",
+        messagingSenderId: "866379486400",
+        appId: "1:866379486400:web:467aa500db0fbfcbf20925",
+        measurementId: "G-V8TLD24V7D"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Function to fetch words from Firebase
+        async function fetchWords() {
+            const dbRef = ref(database);
+            const snapshot = await get(child(dbRef, 'words/'));
+            if (snapshot.exists()) {
+                return snapshot.val();
+            } else {
+                console.error("No data available");
+                return {};
+            }
+        }
+
+        // Function to fetch articles from Firebase
+        async function fetchArticles() {
+            const dbRef = ref(database);
+            const snapshot = await get(child(dbRef, 'articles/'));
+            if (snapshot.exists()) {
+                return snapshot.val();
+            } else {
+                console.error("No data available");
+                return {};
+            }
+        }
+
+        // Export functions to be used in script.js
+        window.fetchWords = fetchWords;
+        window.fetchArticles = fetchArticles;
+    </script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Halaman Utama -->
+    <div id="home-page" class="page active">
+        <h1>Game Edukasi Bahasa Inggris</h1>
+        <button onclick="showPage('game-selection')">Mulai Game</button>
+        <button onclick="showPage('help-page')">Cara Bermain</button>
+        <button onclick="showPage('about-page')">Tentang</button>
+    </div>
+
+    <!-- Halaman Pilihan Mini Game -->
+    <div id="game-selection" class="page">
+        <h2>Pilih Mini Game</h2>
+        <button onclick="startGuessGame()">Tebak Kata Terjemahan</button>
+        <button onclick="startErrorDetect()">Deteksi Kesalahan Artikel</button>
+        <button onclick="showPage('home-page')">Kembali</button>
+    </div>
+
+    <!-- Mini Game Tebak Kata Terjemahan -->
+    <div id="guess-game" class="page">
+        <h2>Tebak Kata Terjemahan</h2>
+        <p id="random-word">Kata: </p>
+        <p id="remaining-attempts"></p> <!-- Elemen untuk sisa kesempatan menebak -->
+        <input type="text" id="user-input" placeholder="Masukkan Terjemahan">
+        <button onclick="checkTranslation()">Submit</button>
+        <button onclick="speakWord()">🔊 Dengar Pelafalan</button>
+        <button onclick="nextWord()">Next Word</button>
+        <p id="feedback"></p>
+        <button onclick="showPage('game-selection')">Kembali ke Menu</button>
+    </div>
+
+    <!-- Mini Game Deteksi Kesalahan Artikel -->
+    <div id="error-detect" class="page">
+        <h2>Deteksi Kesalahan Artikel</h2>
+        <p id="article"></p>
+        <input type="text" id="correction" placeholder="Koreksi kata yang salah">
+        <button onclick="checkError()">Submit</button>
+        <p id="error-feedback"></p>
+        <p id="remaining-attemptss"></p> <!-- Elemen untuk sisa kesempatan menebak -->
+        <button onclick="showPage('game-selection')">Kembali ke Menu</button>
+        <button onclick="nextArticle()">Next Article</button>
+    </div>
+
+    <!-- Halaman Skor -->
+    <div id="score-page" class="page">
+        <h2>Hasil Skor</h2>
+        <p id="score-result">Skor: 0</p>
+        <button onclick="showPage('home-page')">Kembali ke Menu Utama</button>
+    </div>
+
+    <!-- Halaman Cara Bermain -->
+    <div id="help-page" class="page">
+        <h2>Cara Bermain</h2>
+        <p>Pilih salah satu mini game dan ikuti instruksi untuk bermain.</p>
+        <button onclick="showPage('home-page')">Kembali</button>
+    </div>
+
+    <!-- Halaman Tentang -->
+    <div id="about-page" class="page">
+        <h2>Tentang Game</h2>
+        <p>Game ini dirancang untuk membantu meningkatkan keterampilan bahasa Inggris secara interaktif.</p>
+        <button onclick="showPage('home-page')">Kembali</button>
+    </div>
+</body>
+</html>

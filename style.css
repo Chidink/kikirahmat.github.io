@@ -1,0 +1,71 @@
+body {
+    background-color: #1A2B4C; /* Warna latar belakang biru tua */
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.page {
+    display: none; /* Sembunyikan semua halaman secara default */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.page.active {
+    display: flex; /* Tampilkan halaman yang aktif */
+}
+
+h1, h2 {
+    color: #58a9ff; /* Warna teks biru muda */
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    color: rgb(59, 56, 56);
+}
+
+button:nth-child(1) {
+    background-color: #FFA726; /* Tombol oranye */
+}
+
+button:nth-child(2) {
+    background-color: #66BB6A; /* Tombol hijau */
+}
+
+button:nth-child(3) {
+    background-color: #fdd10e; /* Tombol kuning */
+}
+
+button:nth-child(4) {
+    background-color: aqua;
+}
+
+#random-word, #remaining-attempts, #feedback, #article, #error-feedback, #score-result {
+    color: #58a9ff; /* Warna teks biru muda */
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 2px solid #A3C9F1; /* Warna border biru muda */
+    border-radius: 5px;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+button:nth-child(4), button:nth-child(5), button:nth-child(6) {
+    background-color: #FFA726; /* Tombol oranye */
+}
+
+button:nth-child(7) {
+    background-color: #66BB6A; /* Tombol hijau */
+}
