@@ -97,6 +97,31 @@ button:nth-child(4), button:nth-child(5), button:nth-child(6) {
 button:nth-child(7) {
     background-color: #ffcc00; /* Tombol hijau */
 }
+/* Gaya untuk tombol "Kembali" */
+.btn-back {
+    background-color: #FF6F61; /* Warna merah muda cerah */
+    color: #FFFFFF; /* Warna teks putih */
+    padding: 10px 20px;
+    font-size: 1em;
+    font-family: 'Comic Sans MS', Arial, sans-serif; /* Font ceria */
+    border: none;
+    border-radius: 10px; /* Membuat sudut melengkung */
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Bayangan lembut */
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+/* Efek hover */
+.btn-back:hover {
+    transform: scale(1.1); /* Membesar sedikit saat di-hover */
+    background-color: #FF8A75; /* Warna lebih terang saat di-hover */
+}
+
+/* Efek klik */
+.btn-back:active {
+    transform: scale(0.95); /* Sedikit mengecil saat diklik */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Bayangan lebih kecil */
+}
 
 #score-page-guess-game {
     text-align: center;
@@ -142,9 +167,11 @@ button:nth-child(7) {
 }
 
 #audio-settings {
+    background-color: #ffcc00;
     padding: 20px;
-    border: 1px solid #ff6f61;
-    width: 300px;
-    margin: 0 auto;
+    font-size: 1em;
+    color: #FF6f61;
+    border: none;
+    border-radius: 5px;
     text-align: center;
 }
