@@ -1,4 +1,4 @@
-// Simpan state untuk skor, kata, artikel, dan daftar yang telah digunakan
+// Simpan state untuk skor, kata, artikel, dan daftar yang telah digunakan//
 let score = 0;
 let words = {};
 let currentWord = "";
@@ -14,13 +14,87 @@ let totalWordsAvailable = 0; // Variabel untuk menyimpan jumlah kata yang tersed
 let totalArticlesAvailable = 0; //variabel untuk menyimpan jumlah artikel yang tersedia
 let speakTimeout = null;
 let isGameOver = false;
+let screenWidth = screen.width; // Lebar layar fisik
+let screenHeight = screen.height; // Tinggi layar fisik
+let windowWidth = window.innerWidth; // Lebar jendela browser
+let windowHeight = window.innerHeight; //tinggi jendela browser
+
+
+// Jika ingin menyesuaikan dengan windowWidth:
+if (windowWidth !== screenWidth) {
+    screenWidth = windowWidth; // Menggunakan lebar jendela jika lebih kecil
+}
+if (windowHeight !== screenHeight) {
+    screenHeight = windowHeight; // Menggunakan tinggi jendela jika lebih kecil
+}
+
+
+console.log(`Lebar: ${screenWidth}, Tinggi: ${screenHeight}`);
+console.log(`lebar: ${windowWidth}, Tinggi: ${screenHeight}`);
+
+
+
+window.onload = () => {
+    const letters = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz".split("");
+    const numLetters = 50;
+    const letterElements = [];
+    const speeds = [];
+
+    // Membuat elemen huruf acak
+    for (let i = 0; i < numLetters; i++) {
+        const letter = document.createElement("div");
+        letter.classList.add("letter");
+        letter.innerText = letters[i];
+        document.body.appendChild(letter);
+
+        // Inisialisasi posisi dan arah
+        letter.style.left = `${Math.random() * window.innerWidth}px`;
+        letter.style.top = `${Math.random() * window.innerHeight}px`;
+        letter.dataset.xDirection = Math.random() < 0.5 ? 1 : -1; // Arah horizontal
+        letter.dataset.yDirection = Math.random() < 0.5 ? 1 : -1; // Arah vertikal
+        speeds.push(Math.random() * 2 + 1); // Kecepatan acak untuk setiap huruf
+        letterElements.push(letter);
+    }
+
+    function moveLetters() {
+        letterElements.forEach((letter, index) => {
+            let xPos = parseFloat(letter.style.left);
+            let yPos = parseFloat(letter.style.top);
+            let xDirection = parseFloat(letter.dataset.xDirection);
+            let yDirection = parseFloat(letter.dataset.yDirection);
+
+            // Gerakan huruf
+            xPos += xDirection * speeds[index];
+            yPos += yDirection * speeds[index];
+
+            // Pantulan di tepi layar
+            if (xPos <= 0 || xPos >= window.innerWidth - letter.offsetWidth) {
+                xDirection = -xDirection;
+                letter.dataset.xDirection = xDirection; // Simpan arah baru
+            }
+            if (yPos <= 0 || yPos >= window.innerHeight - letter.offsetHeight) {
+                yDirection = -yDirection;
+                letter.dataset.yDirection = yDirection; // Simpan arah baru
+            }
+
+            // Perbarui posisi huruf
+            letter.style.left = `${xPos}px`;
+            letter.style.top = `${yPos}px`;
+        });
+    }
+
+    setInterval(moveLetters, 16); // Memanggil fungsi setiap 16 ms (60 FPS)
+};
+
+
+
+
 
 
 // Fungsi untuk menampilkan halaman tertentu
 function showPage(pageId) {
     document.querySelectorAll('.page').forEach(page => page.style.display = 'none');
     document.getElementById(pageId).style.display = 'block';
-
 }
 
 const music = document.getElementById('background-music');
@@ -255,6 +329,23 @@ playButton.addEventListener('click', () => {
   music.play().catch(e => console.log('Musik tidak dapat diputar:', e));
   buttonClickSound.play(); // Memutar suara klik tombol
 });
+
+// Ambil elemen audio dan slider
+const audio = document.getElementById('background-music');
+const volumeSlider = document.getElementById('music-volume');
+const volumeValue = document.getElementById('volume-value');
+
+// Event listener untuk mengubah volume
+volumeSlider.addEventListener('input', function() {
+    const volume = volumeSlider.value;
+    audio.volume = volume;  // Mengubah volume audio sesuai dengan nilai slider
+
+    // Menampilkan nilai volume dalam persen
+    volumeValue.textContent = Math.round(volume * 100) + '%';
+});
+
+// Inisialisasi nilai volume saat halaman dimuat
+volumeValue.textContent = Math.round(volumeSlider.value * 100) + '%';
 
 // Pengaturan volume TTS
 ttsVolumeSlider.addEventListener('input', (event) => {
