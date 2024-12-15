@@ -7,32 +7,94 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    button {
+        font-size: 1em;
+    }
+
+    img {
+        width: 150px;
+    }
+
+    .text {
+        font-size: 1.2em;
+    }
+}
+
+
+img {
+    width: 200px; /* Ukuran gambar tetap proporsional */
+    height: auto;
+}
+
+button, img, .text {
+    position: relative; /* Dibutuhkan untuk z-index */
+    z-index: 10; /* Lapisan lebih tinggi dibanding huruf */
+    max-width: 90%; /* Elemen mengikuti ukuran layar */
+    flex-shrink: 0;
+}
+
+
+.letter {
+    position: absolute;
+    font-size: 3em;
+    color: #ff6f61;
+    pointer-events: none;
+    user-select: none;
+    transition: transform 0.1s linear;
+    user-select: none;
+    opacity: 0.4;
+    z-index: 1;
+
 }
 .container{
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    user-select: none;
 }
 img.logo {
     display: block;
     margin: 0 auto;
     width: 200px; /* Atur ulang ukuran sesuai kebutuhan */
-    height: 200px; /* Memastikan proporsi gambar tetap */
+    height: auto; /* Memastikan proporsi gambar tetap */
     margin-bottom: 20px;
 }
+
 
 .page {
     display: none; /* Sembunyikan semua halaman secara default */
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    gap: 20px;
 }
 
 .page.active {
     display: flex; /* Tampilkan halaman yang aktif */
+    display: inline-block;
+}
+
+
+p{
+    color: #FFFFFF;
 }
 
 h1, h2 {
     color: #ff6f61; /* Warna teks biru muda */
+}
+
+.text {
+    font-size: 1.5em;
+    color: #333;
 }
 
 #feedback {
@@ -41,7 +103,12 @@ h1, h2 {
 }
 
 button {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
     padding: 10px 20px;
+    margin: 5px;
     border: none;
     border-radius: 10px;
     font-size: 1em;
@@ -49,8 +116,8 @@ button {
     color: #ffffff;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s, background-color 0.2s;
+    position: relative; /* Menjaga posisi tombol relatif */
 }
-
 button:hover {
     transform: scale(1.1);
 }
@@ -60,11 +127,11 @@ button:nth-child(1) {
 }
 
 button:nth-child(2) {
-    background-color: #ffcc00; /* Tombol hijau */
+    background-color: #64b5f6; /* Tombol hijau */
 }
 
 button:nth-child(3) {
-    background-color: #64b5f6; /* Tombol kuning */
+    background-color: #ffcc00; /* Tombol kuning */
 }
 
 button:nth-child(4) {
@@ -72,7 +139,7 @@ button:nth-child(4) {
 }
 
 #random-word, #remaining-attempts, #feedback, #article, #error-feedback, #score-result {
-    color: #ff6f61; /* Warna teks biru muda */
+    color: #ffffff; /* Warna teks biru muda */
 }
 
 input[type="text"] {
@@ -90,9 +157,19 @@ input[type="text"]:focus {
     outline: none;
 }
 
-button:nth-child(4), button:nth-child(5), button:nth-child(6) {
+button:nth-child(4) {
     background-color: #FFA726; /* Tombol oranye */
 }
+
+button:nth-child(5) {
+    background-color: #FFA726; /* Tombol oranye */
+}
+
+button:nth-child(6) {
+    background-color: #FFA726; /* Tombol oranye */
+}
+
+
 
 button:nth-child(7) {
     background-color: #ffcc00; /* Tombol hijau */
@@ -167,11 +244,25 @@ button:nth-child(7) {
 }
 
 #audio-settings {
-    background-color: #ffcc00;
+    background: linear-gradient(to bottom right, #ffee93, #ffa3ac 50%, #9be7ff);
     padding: 20px;
     font-size: 1em;
     color: #FF6f61;
     border: none;
     border-radius: 5px;
     text-align: center;
+}
+
+#background-page{
+    background: linear-gradient(to bottom right, #ffee93, #ffa3ac 50%, #9be7ff);
+    padding: 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#play-music-btn {
+    background-color: #ffcc00;
 }
