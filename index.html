@@ -85,19 +85,19 @@
     <!-- Halaman Utama -->
     <div id="home-page" class="page active">
         <img src="color_transparent.png" alt="Logo" class="logo">
-        <button onclick="playButtonAndSpeak(); showPage('game-selection')">Mulai Game</button>
-        <button onclick="playButtonAndSpeak(); showPage('help-page')">Cara Bermain</button>
-        <button onclick="playButtonAndSpeak(); showPage('about-page')">Tentang</button>
-        <button onclick="playButtonAndSpeak(); showPage('audio-settings')">Pengaturan</button> 
+        <button onclick="playButtonSoundAsync(); showPage('game-selection')">Mulai Game</button>
+        <button onclick="playButtonSoundAsync(); showPage('help-page')">Cara Bermain</button>
+        <button onclick="playButtonSoundAsync(); showPage('about-page')">Tentang</button>
+        <button onclick="playButtonSoundAsync(); showPage('audio-settings')">Pengaturan</button> 
     </div>
 
     <!-- Halaman Pilihan Mini Game -->
     <div id="game-selection" class="page">
         <img src="color_transparent.png" alt="Logo" class="logo">        
         <h2>Pilih Mini Game</h2>
-        <button onclick="playButtonAndSpeak(); startGuessGame()">Tebak Kata Terjemahan</button>
-        <button onclick="playButtonAndSpeak(); startErrorDetect()">Deteksi Kesalahan Artikel</button>
-        <button class="btn-back" onclick="playButtonAndSpeak(); showPage('home-page')">Kembali</button>
+        <button onclick="playButtonSoundAsync(); startGuessGame()">Tebak Kata Terjemahan</button>
+        <button onclick="playButtonSoundAsync(); startErrorDetect()">Deteksi Kesalahan Artikel</button>
+        <button class="btn-back" onclick="playButtonSoundAsync(); showPage('home-page')">Kembali</button>
     </div>
 
     <!-- Mini Game Tebak Kata Terjemahan -->
