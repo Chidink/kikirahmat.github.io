@@ -58,14 +58,13 @@
 </head>
 <body>
     <div class="container">
-    <div id="letters-container"></div>
     <div id="audio-settings" class="page">
         <h1>Pengaturan Musik dan Suara</h1>
         <!-- Volume control -->
         <div class="volume-container">
             <label for="music-volume">Volume Music:</label>
             <input type="range" id="music-volume" min="0" max="1" step="0.1" value="1">
-            <span id="volume-value">100%</span>
+            <span id="volume-value">  100%</span>
         </div>
 
         <br><br>
@@ -74,7 +73,7 @@
         <div class="tts-container">
             <label for="tts-volume">Volume TTS:</label>
             <input type="range" id="tts-volume" min="0" max="1" step="0.1" value="1">
-            <span id="volume-value2">100%</span>
+            <span id="volume-value2">  100%</span>
         </div>
         
         <br><br>
@@ -125,7 +124,7 @@
         <div class="image-container">
             <img id="word-image" src="" alt="Gambar kata" />
         </div>
-        <p id="random-word">Kata: </p>
+        <p id="random-word"> Kata: </p>
         <p id="feedback"></p>
         <input type="text" id="user-input" placeholder="Masukkan Terjemahan">
         <button onclick="playButtonSoundAsync(); checkTranslation()">Submit</button>
