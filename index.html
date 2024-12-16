@@ -28,13 +28,13 @@
 
         // Function to fetch words from Firebase
         async function fetchWords() {
-            const dbRef = ref(database);
-            const snapshot = await get(child(dbRef, 'words/'));
+            const dbRef = ref(getDatabase(), 'words'); // Akses node 'words' di database
+            const snapshot = await get(dbRef); // Mengambil data sekali
             if (snapshot.exists()) {
-                return snapshot.val();
+                return snapshot.val(); // Mengembalikan data kata dan gambar
             } else {
-                console.error("No data available");
-                return {};
+                console.error("Data tidak ditemukan!");
+                return {}; // Jika data tidak ada
             }
         }
 
@@ -71,15 +71,16 @@
         <br><br>
 
         <!-- Pengaturan Volume TTS -->
-        <label for="tts-volume">Volume TTS:</label>
-        <input type="range" id="tts-volume" min="0" max="1" step="0.1" value="1">
+        <div class="tts-container">
+            <label for="tts-volume">Volume TTS:</label>
+            <input type="range" id="tts-volume" min="0" max="1" step="0.1" value="1">
+            <span id="volume-value2">100%</span>
+        </div>
         
         <br><br>
       
         <!-- Tombol untuk memutar suara button click -->
-        <audio id="button-sound">
-          <source src="button-click.mp3" type="audio/mp3">
-        </audio>
+        <audio id="button-sound" src="button-click.mp3"></audio>
 
               
         <!-- Tombol Play Musik -->
@@ -119,26 +120,29 @@
 
     <!-- Mini Game Tebak Kata Terjemahan -->
     <div id="guess-game" class="page">
-        <div id="background-page"> 
         <h2>Tebak Kata Terjemahan</h2>
+        <div id="background-page"> 
+        <div class="image-container">
+            <img id="word-image" src="" alt="Gambar kata" />
+        </div>
         <p id="random-word">Kata: </p>
-        <p id="remaining-attempts"></p> <!-- Elemen untuk sisa kesempatan menebak -->
-        <input type="text" id="user-input" placeholder="Masukkan Terjemahan">
-        <button onclick="checkTranslation()">Submit</button>
-        <button onclick="playButtonAndSpeak()">🔊 Dengar Pelafalan</button>
-        <button onclick="nextWord()">Next Word</button>
         <p id="feedback"></p>
+        <input type="text" id="user-input" placeholder="Masukkan Terjemahan">
+        <button onclick="playButtonSoundAsync(); checkTranslation()">Submit</button>
+        <button onclick="playButtonAndSpeak()">🔊 Dengar Pelafalan</button>
+        <p id="remaining-attempts"></p> <!-- Elemen untuk sisa kesempatan menebak -->
+        <button class="btn-back" onclick="nextWord(); playButtonAndSpeak()">Next Word</button>
         <button class="btn-back" onclick="playButtonSoundAsync(); showPage('game-selection')">Kembali ke Menu</button>
         </div>
     </div>
 
     <!-- Mini Game Deteksi Kesalahan Artikel -->
     <div id="error-detect" class="page">
-        <div id="background-page">
         <h2>Deteksi Kesalahan Artikel</h2>
+        <div id="background-page">
         <p id="article"></p>
         <input type="text" id="correction" placeholder="Koreksi kata yang salah">
-        <button onclick="checkError()">Submit</button>
+        <button onclick="playButtonSoundAsync(); checkError()">Submit</button>
         <p id="error-feedback"></p>
         <p id="remaining-attemptss"></p> <!-- Elemen untuk sisa kesempatan menebak -->
         <button class="btn-back" onclick="playButtonSoundAsync(); showPage('game-selection')">Kembali ke Menu</button>
@@ -149,9 +153,9 @@
     <!-- Halaman Skor guess game -->
     <div id="score-page-guess-game" class="page" style="display: none;">
         <div id="background-page">
+        <p id="final-feedback"></p>
         <h2>Hasil Skor</h2>
         <p id="score-result-guess-game">Skor: 0</p>
-        <p id="final-feedback"></p>
         <button class="btn-back" onclick="playButtonSoundAsync(); showPage('home-page')">Kembali ke Menu Utama</button>
         <button id="restart-button-guess-game">Main lagi</button>
         </div>
@@ -160,9 +164,9 @@
     <!-- Halaman Skor guess game -->
     <div id="score-page-check-eror" class="page" style="display: none;">
         <div id="background-page">
+        <p id="final-feedback"></p>
         <h2>Hasil Skor</h2>
         <p id="score-result-check-eror">Skor: 0</p>
-        <p id="final-feedback"></p>
         <button class="btn-back" onclick="playButtonSoundAsync(); showPage('home-page')">Kembali ke Menu Utama</button>
         <button id="restart-button-check-eror">Main lagi</button>
         </div>
