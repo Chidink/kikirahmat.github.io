@@ -59,136 +59,121 @@
 </head>
 <body>
     <div class="container">
-    <div id="audio-settings" class="page">
-        <h1>Pengaturan Musik dan Suara</h1>
-        <!-- Volume control -->
-        <div class="volume-container">
-            <label for="music-volume">Volume Music:</label>
-            <input type="range" id="music-volume" min="0" max="1" step="0.1" value="1">
-            <span id="volume-value">  100%</span>
-        </div>
-
-        <br><br>
-
-        <!-- Pengaturan Volume TTS -->
-        <div class="tts-container">
-            <label for="tts-volume">Volume TTS:</label>
-            <input type="range" id="tts-volume" min="0" max="1" step="0.1" value="1">
-            <span id="volume-value2">  100%</span>
-        </div>
-        
-        <br><br>
-      
-        <!-- Tombol untuk memutar suara button click -->
-        <audio id="button-sound" src="button-click.mp3"></audio>
-
-              
-        <!-- Tombol Play Musik -->
-        <audio id="background-music" loop>
-            <source src="background-music.mp3" type="audio/mp3">
-            Browser Anda tidak mendukung elemen audio.
-          </audio>
-          <button id="play-music-btn">Putar Musik</button>
-        
-        <br><br>
-
-        <button class="btn-back" onclick="playButtonSoundAsync(); showPage('home-page')">Kembali</button>
-    </div>
-      
-    <!-- Halaman Utama -->
-    <div id="home-page" class="page active">
-        <img src="color_transparent.png" alt="Logo" class="logo">
         <div id="background-page">
-            <h2>Selamat Datang!</h2>
-            <button onclick="playButtonSoundAsync(); showPage('game-selection')">Mulai Game</button>
-            <button onclick="playButtonSoundAsync(); showPage('help-page')">Cara Bermain</button>
-            <button onclick="playButtonSoundAsync(); showPage('about-page')">Tentang</button>
-            <button onclick="playButtonSoundAsync(); showPage('audio-settings')">Pengaturan</button> 
-        </div>
-    </div>
+            <div id="audio-settings" class="page">
+                <h1>Pengaturan Musik dan Suara</h1>
+                <!-- Volume control -->
+                <div class="volume-container">
+                    <label for="music-volume">Volume Music:</label>
+                    <input type="range" id="music-volume" min="0" max="1" step="0.1" value="1">
+                    <span id="volume-value">  100%</span>
+                </div>
 
-    <!-- Halaman Pilihan Mini Game -->
-    <div id="game-selection" class="page">
-        <img src="color_transparent.png" alt="Logo" class="logo">
-        <div id="background-page">       
-        <h2>Pilih Mini Game</h2>
-        <button onclick="playButtonSoundAsync(); startGuessGame()">Tebak Kata Terjemahan</button>
-        <button onclick="playButtonSoundAsync(); startErrorDetect()">Deteksi Kesalahan Artikel</button>
-        <button class="btn-back" onclick="playButtonSoundAsync(); showPage('home-page')">Kembali</button>
-        </div>
-    </div>
+                <br><br>
 
-    <!-- Mini Game Tebak Kata Terjemahan -->
-    <div id="guess-game" class="page">
-        <h2>Tebak Kata Terjemahan</h2>
-        <div id="background-page"> 
-        <div class="image-container">
-            <img id="word-image" src="" alt="Gambar kata" />
-        </div>
-        <p id="random-word"> Kata: </p>
-        <p id="feedback"></p>
-        <input type="text" id="user-input" placeholder="Masukkan Terjemahan">
-        <button onclick="playButtonSoundAsync(); checkTranslation()">Submit</button>
-        <button onclick="playButtonAndSpeak()">🔊 Dengar Pelafalan</button>
-        <p id="remaining-attempts"></p> <!-- Elemen untuk sisa kesempatan menebak -->
-        <button class="btn-back" onclick="nextWord(); playButtonAndSpeak()">Next Word</button>
-        <button class="btn-back" onclick="playButtonSoundAsync(); showPage('game-selection')">Kembali ke Menu</button>
-        </div>
-    </div>
+                <!-- Pengaturan Volume TTS -->
+                <div class="tts-container">
+                    <label for="tts-volume">Volume TTS:</label>
+                    <input type="range" id="tts-volume" min="0" max="1" step="0.1" value="1">
+                    <span id="volume-value2">  100%</span>
+                </div>
+                
+                <br><br>
+            
+                <!-- Tombol untuk memutar suara button click -->
+                <audio id="button-sound" src="button-click.mp3"></audio>
 
-    <!-- Mini Game Deteksi Kesalahan Artikel -->
-    <div id="error-detect" class="page">
-        <h2>Deteksi Kesalahan Artikel</h2>
-        <div id="background-page">
-        <p id="article"></p>
-        <input type="text" id="correction" placeholder="Koreksi kata yang salah">
-        <button onclick="playButtonSoundAsync(); checkError()">Submit</button>
-        <p id="error-feedback"></p>
-        <p id="remaining-attemptss"></p> <!-- Elemen untuk sisa kesempatan menebak -->
-        <button class="btn-back" onclick="playButtonSoundAsync(); showPage('game-selection')">Kembali ke Menu</button>
-        <button class="btn-back" onclick="playButtonSoundAsync(); nextArticle()">Next Article</button>
-        </div>
-    </div>
+                    
+                <!-- Tombol Play Musik -->
+                <audio id="background-music" loop>
+                    <source src="background-music.mp3" type="audio/mp3">
+                    Browser Anda tidak mendukung elemen audio.
+                </audio>
+                <button id="play-music-btn">Putar Musik</button>
+                
+                <br><br>
 
-    <!-- Halaman Skor guess game -->
-    <div id="score-page-guess-game" class="page" style="display: none;">
-        <div id="background-page">
-        <p id="final-feedback"></p>
-        <h2>Hasil Skor</h2>
-        <p id="score-result-guess-game">Skor: 0</p>
-        <button class="btn-back" onclick="playButtonSoundAsync(); showPage('home-page')">Kembali ke Menu Utama</button>
-        <button id="restart-button-guess-game">Main lagi</button>
-        </div>
-    </div>
+                <button class="btn-back" onclick="playButtonSoundAsync(); showPage('home-page')">Kembali</button>
+            </div>
+            
+            <!-- Halaman Utama -->
+            <div id="home-page" class="page active">
+                <img src="color_transparent.png" alt="Logo" class="logo">
+                    <h2>Selamat Datang!</h2>
+                    <button onclick="playButtonSoundAsync(); showPage('game-selection')">Mulai Game</button>
+                    <button onclick="playButtonSoundAsync(); showPage('help-page')">Cara Bermain</button>
+                    <button onclick="playButtonSoundAsync(); showPage('about-page')">Tentang</button>
+                    <button onclick="playButtonSoundAsync(); showPage('audio-settings')">Pengaturan</button> 
+            </div>
 
-    <!-- Halaman Skor guess game -->
-    <div id="score-page-check-eror" class="page" style="display: none;">
-        <div id="background-page">
-        <p id="final-feedback"></p>
-        <h2>Hasil Skor</h2>
-        <p id="score-result-check-eror">Skor: 0</p>
-        <button class="btn-back" onclick="playButtonSoundAsync(); showPage('home-page')">Kembali ke Menu Utama</button>
-        <button id="restart-button-check-eror">Main lagi</button>
-        </div>
-    </div>
+            <!-- Halaman Pilihan Mini Game -->
+            <div id="game-selection" class="page">
+                <img src="color_transparent.png" alt="Logo" class="logo">      
+                <h2>Pilih Mini Game</h2>
+                <button onclick="playButtonSoundAsync(); startGuessGame()">Tebak Kata Terjemahan</button>
+                <button onclick="playButtonSoundAsync(); startErrorDetect()">Deteksi Kesalahan Artikel</button>
+                <button class="btn-back" onclick="playButtonSoundAsync(); showPage('home-page')">Kembali</button>
+            </div>
 
-    <!-- Halaman Cara Bermain -->
-    <div id="help-page" class="page">
-        <div id="background-page">
-        <h2>Cara Bermain</h2>
-        <p>Pilih salah satu mini game dan ikuti instruksi untuk bermain.</p>
-        <button class="btn-back" onclick="playButtonSoundAsync(); showPage('home-page')">Kembali</button>
-        </div>
-    </div>
+            <!-- Mini Game Tebak Kata Terjemahan -->
+            <div id="guess-game" class="page">
+                <h2>Tebak Kata Terjemahan</h2>
+                <div class="image-container">
+                    <img id="word-image" src="" alt="Gambar kata" />
+                </div>
+                <p id="random-word"> Kata: </p>
+                <p id="feedback"></p>
+                <input type="text" id="user-input" placeholder="Masukkan Terjemahan">
+                <button onclick="playButtonSoundAsync(); checkTranslation()">Submit</button>
+                <button onclick="playButtonAndSpeak()">🔊 Dengar Pelafalan</button>
+                <p id="remaining-attempts"></p> <!-- Elemen untuk sisa kesempatan menebak -->
+                <button class="btn-back" onclick="nextWord(); playButtonAndSpeak()">Next Word</button>
+                <button class="btn-back" onclick="playButtonSoundAsync(); showPage('game-selection')">Kembali ke Menu</button>
+            </div>
 
-    <!-- Halaman Tentang -->
-    <div id="about-page" class="page">
-        <div id="background-page">
-        <h2>Tentang Game</h2>
-        <p>Game ini kami rancang untuk membantu meningkatkan keterampilan bahasa Inggris secara interaktif.</p>
-        <button class="btn-back" onclick="playButtonSoundAsync(); showPage('home-page')">Kembali</button> 
+            <!-- Mini Game Deteksi Kesalahan Artikel -->
+            <div id="error-detect" class="page">
+                <h2>Deteksi Kesalahan Artikel</h2>
+                <p id="article"></p>
+                <input type="text" id="correction" placeholder="Koreksi kata yang salah">
+                <button onclick="playButtonSoundAsync(); checkError()">Submit</button>
+                <p id="error-feedback"></p>
+                <p id="remaining-attemptss"></p> <!-- Elemen untuk sisa kesempatan menebak -->
+                <button class="btn-back" onclick="playButtonSoundAsync(); showPage('game-selection')">Kembali ke Menu</button>
+                <button class="btn-back" onclick="playButtonSoundAsync(); nextArticle()">Next Article</button>
+            </div>
+
+            <!-- Halaman Skor guess game -->
+            <div id="score-page-guess-game" class="page" style="display: none;">
+                <p id="final-feedback"></p>
+                <h2>Hasil Skor</h2>
+                <p id="score-result-guess-game">Skor: 0</p>
+                <button class="btn-back" onclick="playButtonSoundAsync(); showPage('home-page')">Kembali ke Menu Utama</button>
+                <button id="restart-button-guess-game">Main lagi</button>
+            </div>
+
+            <!-- Halaman Skor guess game -->
+            <div id="score-page-check-eror" class="page" style="display: none;">
+                <p id="final-feedback"></p>
+                <h2>Hasil Skor</h2>
+                <p id="score-result-check-eror">Skor: 0</p>
+                <button class="btn-back" onclick="playButtonSoundAsync(); showPage('home-page')">Kembali ke Menu Utama</button>
+            </div>
+
+            <!-- Halaman Cara Bermain -->
+            <div id="help-page" class="page">
+                <h2>Cara Bermain</h2>
+                <p>Pilih salah satu mini game dan ikuti instruksi untuk bermain.</p>
+                <button class="btn-back" onclick="playButtonSoundAsync(); showPage('home-page')">Kembali</button>
+            </div>
+
+            <!-- Halaman Tentang -->
+            <div id="about-page" class="page">
+                <h2>Tentang Game</h2>
+                <p>Game ini kami rancang untuk membantu meningkatkan keterampilan bahasa Inggris secara interaktif.</p>
+                <button class="btn-back" onclick="playButtonSoundAsync(); showPage('home-page')">Kembali</button> 
+            </div>
         </div>
-    </div>
     </div>
 </body>
 </html>
