@@ -34,58 +34,6 @@ console.log(`lebar: ${windowWidth}, Tinggi: ${screenHeight}`);
 
 
 
-window.onload = () => {
-    const letters = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz".split("");
-    const numLetters = 50;
-    const letterElements = [];
-    const speeds = [];
-
-    // Membuat elemen huruf acak
-    for (let i = 0; i < numLetters; i++) {
-        const letter = document.createElement("div");
-        letter.classList.add("letter");
-        letter.innerText = letters[i];
-        document.body.appendChild(letter);
-
-        // Inisialisasi posisi dan arah
-        letter.style.left = `${Math.random() * window.innerWidth}px`;
-        letter.style.top = `${Math.random() * window.innerHeight}px`;
-        letter.dataset.xDirection = Math.random() < 0.5 ? 1 : -1; // Arah horizontal
-        letter.dataset.yDirection = Math.random() < 0.5 ? 1 : -1; // Arah vertikal
-        speeds.push(Math.random() * 2 + 1); // Kecepatan acak untuk setiap huruf
-        letterElements.push(letter);
-    }
-
-    function moveLetters() {
-        letterElements.forEach((letter, index) => {
-            let xPos = parseFloat(letter.style.left);
-            let yPos = parseFloat(letter.style.top);
-            let xDirection = parseFloat(letter.dataset.xDirection);
-            let yDirection = parseFloat(letter.dataset.yDirection);
-
-            // Gerakan huruf
-            xPos += xDirection * speeds[index];
-            yPos += yDirection * speeds[index];
-
-            // Pantulan di tepi layar
-            if (xPos <= 0 || xPos >= window.innerWidth - letter.offsetWidth) {
-                xDirection = -xDirection;
-                letter.dataset.xDirection = xDirection; // Simpan arah baru
-            }
-            if (yPos <= 0 || yPos >= window.innerHeight - letter.offsetHeight) {
-                yDirection = -yDirection;
-                letter.dataset.yDirection = yDirection; // Simpan arah baru
-            }
-
-            // Perbarui posisi huruf
-            letter.style.left = `${xPos}px`;
-            letter.style.top = `${yPos}px`;
-        });
-    }
-
-    setInterval(moveLetters, 16); // Memanggil fungsi setiap 16 ms (60 FPS)
-};
-
 
 
 
