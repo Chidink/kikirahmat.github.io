@@ -350,7 +350,7 @@ button:nth-child(7) {
     text-align: center;
 }
 
-#background-page {
+#background-page{
     background: linear-gradient(to bottom right, #ffee93, #ffa3ac 50%, #9be7ff);
     padding: 20px;
     font-size: 1em;
@@ -358,13 +358,9 @@ button:nth-child(7) {
     border-radius: 5px;
     text-align: center;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    position: absolute; /* Menggunakan absolute agar latar belakang tidak mempengaruhi aliran konten */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; /* Mengisi seluruh tinggi kontainer */
-    z-index: -1; /* Pastikan berada di belakang konten utama */
+    max-width: 90%;
 }
+
 
 
 #play-music-btn {
