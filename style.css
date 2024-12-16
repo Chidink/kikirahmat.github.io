@@ -1,5 +1,6 @@
+/* Body */
 body {
-    background-color: #ffebb7; /* Warna latar belakang biru tua */
+    background: linear-gradient(135deg, #ffebb7, #ffc3a0); /* Gradien warna pastel */
     font-family: 'Comic Sans MS', Arial, sans-serif;
     display: flex;
     flex-direction: column;
@@ -11,6 +12,22 @@ body {
     overflow: hidden;
     box-sizing: border-box;
 }
+
+/* Pola Latar Belakang */
+body::before {
+    content: "";
+    background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble.png'),
+                      url('https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble.png');
+    background-repeat: repeat;
+    opacity: 0.3; /* Transparan agar tidak mengganggu konten */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
 
 /* Responsif */
 @media (max-width: 768px) {
@@ -28,9 +45,25 @@ body {
 }
 
 
+/* Gambar */
 img {
-    width: 200px; /* Ukuran gambar tetap proporsional */
+    width: 180px;
     height: auto;
+    margin-bottom: 10px;
+    animation: bounce 2s infinite; /* Animasi untuk menarik perhatian */
+}
+
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
 }
 
 button, img, .text {
@@ -40,30 +73,37 @@ button, img, .text {
     flex-shrink: 0;
 }
 
-
-.letter {
-    position: absolute;
-    font-size: 3em;
-    color: #ff6f61;
-    pointer-events: none;
-    user-select: none;
-    transition: transform 0.1s linear;
-    user-select: none;
-    opacity: 0.4;
-    z-index: 1;
-
-}
-.container{
+/* Container Utama */
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    width: 100%;
+    height: auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    background: #FFF8E1;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
     text-align: center;
-    user-select: none;
-    z-index: 10;
+    animation: fadeIn 1s ease-in-out;
 }
+
+/* Animasi Muncul */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
 img.logo {
     display: block;
     margin: 0 auto;
@@ -88,6 +128,7 @@ img.logo {
     max-height: 200px;
     object-fit: contain;
     display: block;
+    border: #64b5f6;
 }
 
 
@@ -108,8 +149,12 @@ p{
     font-size: 1.5em;
 }
 
+/* Judul */
 h1, h2 {
-    color: #ff6f61; /* Warna teks biru muda */
+    color: #FF6F61;
+    font-size: 2rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
 }
 
 .text {
@@ -122,24 +167,26 @@ h1, h2 {
     font-weight: bold;
 }
 
+/* Tombol */
 button {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    padding: 10px 20px;
-    margin: 5px;
+    background-color: #FF9A8B;
+    color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 20px;
+    padding: 10px 20px;
     font-size: 1em;
+    margin: 5px;
     cursor: pointer;
-    color: #ffffff;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s, background-color 0.2s;
-    position: relative; /* Menjaga posisi tombol relatif */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
 }
 button:hover {
+    background-color: #FF6F61;
     transform: scale(1.1);
+}
+
+button:active {
+    transform: scale(0.95);
 }
 
 button:nth-child(1) {
@@ -163,21 +210,25 @@ button:nth-child(4) {
     font-size: 1.5em;
 }
 
+/* Input */
 input[type="text"] {
     padding: 10px;
-    border: 2px solid #64b5f6; /* Warna border biru muda */
+    border: 3px solid #FF9A8B;
     border-radius: 10px;
     font-size: 1em;
     margin-bottom: 10px;
-    background-color: #ffffff;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
+    background: #FFF8E1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.3s ease;
 }
 
 input[type="text"]:focus {
-    border-color: #ff6f61;
+    border-color: #FF6F61;
     outline: none;
 }
-
 button:nth-child(4) {
     background-color: #FFA726; /* Tombol oranye */
 }
@@ -230,6 +281,29 @@ button:nth-child(7) {
 #final-feedback {
     font-size: 1.1em;
     margin-top: 10px;
+}
+
+/* Teks Feedback dan Skor */
+#feedback, #score-result {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #FF6F61;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+    img {
+        width: 120px;
+    }
+    button {
+        font-size: 0.9em;
+    }
+    input[type="text"] {
+        font-size: 0.9em;
+    }
 }
 
 #restart-button-guess-game {
@@ -288,4 +362,20 @@ button:nth-child(7) {
 
 #play-music-btn {
     background-color: #ffcc00;
+}
+
+.tts-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    align-items: center;
+}
+
+.volume-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    align-items: center;
 }
