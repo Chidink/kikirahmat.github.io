@@ -62,6 +62,7 @@ button, img, .text {
     width: 100%;
     text-align: center;
     user-select: none;
+    z-index: 10;
 }
 img.logo {
     display: block;
@@ -69,6 +70,24 @@ img.logo {
     width: 200px; /* Atur ulang ukuran sesuai kebutuhan */
     height: auto; /* Memastikan proporsi gambar tetap */
     margin-bottom: 20px;
+}
+
+/* Kontainer untuk menempatkan gambar di tengah */
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+/* Gambar di dalam kontainer */
+#word-image {
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: contain;
+    display: block;
 }
 
 
@@ -86,6 +105,7 @@ img.logo {
 
 p{
     color: #FFFFFF;
+    font-size: 1.5em;
 }
 
 h1, h2 {
@@ -139,7 +159,8 @@ button:nth-child(4) {
 }
 
 #random-word, #remaining-attempts, #feedback, #article, #error-feedback, #score-result {
-    color: #ffffff; /* Warna teks biru muda */
+    color: #ffffff; /* Warna teks putih */
+    font-size: 1.5em;
 }
 
 input[type="text"] {
@@ -202,11 +223,12 @@ button:nth-child(7) {
 
 #score-page-guess-game {
     text-align: center;
+    font-size: 1.5em;
     padding: 20px;
 }
 
 #final-feedback {
-    font-size: 1.2em;
+    font-size: 1.1em;
     margin-top: 10px;
 }
 
@@ -227,6 +249,7 @@ button:nth-child(7) {
 #score-page-check-eror {
     text-align: center;
     padding: 20px;
+    font-size: 1.5em;
 }
 
 #restart-button-check-eror {
