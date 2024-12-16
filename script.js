@@ -102,6 +102,7 @@ const playButton = document.getElementById('play-music-btn');
 const buttonClickSound = document.getElementById('button-sound');
 const ttsVolumeSlider = document.getElementById('tts-volume');
 
+
 // Fungsi untuk memulai game tebak kata
 async function startGuessGame() {
     // Reset semua variabel permainan
@@ -121,6 +122,12 @@ async function startGuessGame() {
     document.getElementById('feedback').textContent = "";
     console.log("Kata yang diambil: ", words);
 
+    // Ambil URL gambar berdasarkan kata yang dipilih
+    const wordImage = words[currentWord].image;  // Ambil URL gambar
+    const imageElement = document.getElementById('word-image');
+    imageElement.src = wordImage;  // Atur src gambar
+    imageElement.style.display = 'block';  // Tampilkan gambar
+
     // Set jumlah kata yang tersedia
     totalWordsAvailable = Object.keys(words).length;
     remainingWords = totalWordsAvailable;
@@ -135,26 +142,37 @@ async function startGuessGame() {
     playButtonAndSpeak();
     showPage('guess-game');
 }
-
-function nextWord() {
+async function nextWord() {
     // Cek apakah kata tersedia
-    playButtonAndSpeak();
     const availableWords = Object.keys(words).filter(word => !usedWords.includes(word));
     currentWord = availableWords[Math.floor(Math.random() * availableWords.length)];
+
+    // Tampilkan kata yang dipilih di halaman
     document.getElementById('random-word').textContent = `Kata: ${currentWord}`;
     document.getElementById('user-input').value = "";
     document.getElementById('feedback').textContent = "";
 
+    // Ambil URL gambar berdasarkan kata yang dipilih
+    const wordImage = words[currentWord].image; // Ambil gambar dari Firebase
+    const imageElement = document.getElementById('word-image');
+
+    console.log('Nama kata:', words[currentWord].name);  // Debug: Cek nama kata
+    console.log('URL gambar:', wordImage);  // Debug: Cek URL gambar
+
+    // Perbarui elemen gambar dengan gambar yang sesuai dengan kata baru
+    if (wordImage) {
+        imageElement.src = wordImage;  // Set src gambar sesuai kata yang baru
+        imageElement.style.display = 'block';  // Tampilkan gambar
+    } else {
+        imageElement.style.display = 'none';  // Sembunyikan gambar jika tidak ada
+    }
 }
 
 
-// Fungsi untuk memutar suara tombol dan TTS secara bersamaan
+// Fungsi untuk memutar suara tombol dan TTS secara bersamaan, dengan suara tombol lebih dulu
 function playButtonAndSpeak() {
-    // Memutar suara tombol terlebih dahulu, baru kemudian TTS
-    playButtonSoundAsync().then(() => {
-        setTimeout(() => {
-            speakWordAsync(); // Hanya dijalankan setelah suara tombol selesai
-        }, 10);
+    playButtonSoundAsync().then(() => {  // Tunggu sampai suara tombol selesai
+        speakWordAsync();  // Setelah suara tombol selesai, baru memulai TTS
     });
 }
 
@@ -162,11 +180,10 @@ function playButtonAndSpeak() {
 function playButtonSoundAsync() {
     return new Promise((resolve) => {
         const buttonAudio = document.getElementById('button-sound');
-        buttonAudio.play();
-        buttonAudio.onended = resolve; // Resolves when the sound ends
+        buttonAudio.play();  // Mainkan suara tombol
+        buttonAudio.onended = resolve;  // Resolves when the sound ends
     });
 }
-
 // Fungsi untuk memilih kata acak
 function speakWordAsync() {
     return new Promise((resolve) => {
@@ -186,8 +203,9 @@ function speakWordAsync() {
 function checkTranslation() {
     const userInput = document.getElementById('user-input').value.toLowerCase();
     const feedbackElement = document.getElementById('feedback');
+    const correctWord = words[currentWord].name;
 
-    if (userInput === words[currentWord].toLowerCase()) {
+    if (userInput.toLowerCase() === correctWord.toLowerCase())  {
         score += 10; // Tambah skor jika benar
         feedbackElement.textContent = "Benar!";
         feedbackElement.style.color = "green"; // Warna hijau untuk jawaban benar
@@ -197,10 +215,12 @@ function checkTranslation() {
         totalWordsAvailable -= 1;
         playButtonAndSpeak();
     } else {
-        feedbackElement.textContent = `Salah! Terjemahan yang benar adalah: "${words[currentWord]}"`;
-        feedbackElement.style.color = "red"; // Warna hijau untuk jawaban benar
+        // Ambil kata yang benar dari Firebase
+        const correctWord = words[currentWord].name;  // Mengambil nama yang benar
+        feedbackElement.textContent = `Salah! Terjemahan yang benar adalah: "${correctWord}"`;
+        feedbackElement.style.color = "red"; // Warna merah untuk jawaban salah
         remainingWords--;
-        totalWordsAvailable -=1;
+        totalWordsAvailable -= 1;
         usedWords.push(currentWord);
         playButtonAndSpeak();
     }
@@ -335,6 +355,13 @@ const audio = document.getElementById('background-music');
 const volumeSlider = document.getElementById('music-volume');
 const volumeValue = document.getElementById('volume-value');
 
+
+// Ambil elemen audio dan slider
+const audio2 = document.getElementById('button-sound');
+const volumeSlider2 = document.getElementById('tts-volume');
+const volumeValue2 = document.getElementById('volume-value2');
+
+
 // Event listener untuk mengubah volume
 volumeSlider.addEventListener('input', function() {
     const volume = volumeSlider.value;
@@ -346,12 +373,14 @@ volumeSlider.addEventListener('input', function() {
 
 // Inisialisasi nilai volume saat halaman dimuat
 volumeValue.textContent = Math.round(volumeSlider.value * 100) + '%';
+volumeValue2.textContent = Math.round(volumeSlider.value * 100) + '%';
 
 // Pengaturan volume TTS
-ttsVolumeSlider.addEventListener('input', (event) => {
+volumeSlider2.addEventListener('input', (event) => {
   const volume = event.target.value;
   const utterance = new SpeechSynthesisUtterance("Selamat datang di game!");
   utterance.volume = volume; // Atur volume sesuai slider
+  volumeValue2.textContent = Math.round(volume * 100) + '%';
   speechSynthesis.speak(utterance);
 });
 
