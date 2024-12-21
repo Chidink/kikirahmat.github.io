@@ -1,4 +1,3 @@
-/* Body */
 body {
     background: linear-gradient(135deg, #ffebb7, #ffc3a0); /* Gradien warna pastel */
     font-family: 'Comic Sans MS', Arial, sans-serif;
@@ -8,6 +7,7 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
+    padding: 0;
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
@@ -29,22 +29,6 @@ body::before {
 }
 
 
-/* Responsif */
-@media (max-width: 768px) {
-    button {
-        font-size: 1em;
-    }
-
-    img {
-        width: 150px;
-    }
-
-    .text {
-        font-size: 1.2em;
-    }
-}
-
-
 /* Gambar */
 img {
     width: 180px;
@@ -58,11 +42,8 @@ img {
     0%, 20%, 50%, 80%, 100% {
         transform: translateY(0);
     }
-    40% {
+    30% {
         transform: translateY(-10px);
-    }
-    60% {
-        transform: translateY(-5px);
     }
 }
 
@@ -80,6 +61,10 @@ button, img, .text {
     align-items: center;
     justify-content: center;
     height: auto;
+    max-height: 90vh;
+    margin: clamp(10px, 5%, 50px); /* Margin responsif */
+    margin-left: auto;
+    margin-right: auto; /* Pusatkan elemen */
     padding: 20px;
     width: 90%;
     max-width: 500px;
@@ -88,6 +73,7 @@ button, img, .text {
     border-radius: 15px;
     text-align: center;
     animation: fadeIn 1s ease-in-out;
+    box-sizing: border-box;
 }
 
 /* Animasi Muncul */
@@ -117,7 +103,7 @@ img.logo {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 300px;
+    height: 100px;
     width: 100%;
     margin: 20px 0;
 }
@@ -152,9 +138,10 @@ p{
 /* Judul */
 h1, h2 {
     color: #FF6F61;
-    font-size: 2rem;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     margin: 10px 0;
+    margin-bottom: 35px;
+    padding: 10px;
 }
 
 .text {
@@ -175,7 +162,7 @@ button {
     border-radius: 20px;
     padding: 10px 20px;
     font-size: 1em;
-    margin: 5px;
+    margin: 2px;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
@@ -304,6 +291,46 @@ button:nth-child(7) {
     input[type="text"] {
         font-size: 0.9em;
     }
+    .slider{
+        height: 6px;
+    }
+    .text-tts {
+        margin: 30px;
+    }
+    .text-music{
+        margin: 30px;
+    }
+    body {
+        font-size: 16px;
+    }
+    .container {
+        max-width: 300px;
+    }
+}
+
+
+@media (min-width: 769px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+    img {
+        width: 120px;
+    }
+    button {
+        font-size: 0.9em;
+    }
+    input[type="text"] {
+        font-size: 0.9em;
+    }
+    .slider{
+        height: 6px;
+    }
+    .text-music{
+        margin-right: 100px;
+    }
+    body {
+        font-size: 16px;
+    }
 }
 
 #restart-button-guess-game {
@@ -313,7 +340,6 @@ button:nth-child(7) {
     color: #ff6f61;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
 }
 
 #restart-button-guess-game:hover {
@@ -359,6 +385,7 @@ button:nth-child(7) {
     text-align: center;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     max-width: 90%;
+    color: #FF6f61;
 }
 
 
@@ -381,4 +408,33 @@ button:nth-child(7) {
     position: relative;
     text-align: center;
     align-items: center;
+}
+
+
+#volume-value {
+    position:absolute;
+}
+
+#volume-value2 {
+    position:absolute;
+}
+
+.slider {
+    -webkit-appearance: none;
+    border-radius: 11px;
+    height:  25px;
+    width: 45%;
+    background: linear-gradient(90deg, #4CAF50, #2196F3); /* Jalur slider dengan gradien */
+}
+
+
+
+.text-tts {
+    position:absolute;
+    margin-right:260px;
+}
+
+.text-music {
+    position:absolute;
+    margin-right:255px;
 }
