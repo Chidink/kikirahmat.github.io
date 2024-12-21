@@ -11,6 +11,7 @@ body {
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
+    user-select: none;
 }
 
 /* Pola Latar Belakang */
@@ -31,6 +32,8 @@ body::before {
 
 /* Gambar */
 img {
+    max-width: 100%;
+    height: auto;
     width: 180px;
     height: auto;
     margin-bottom: 10px;
@@ -47,17 +50,11 @@ img {
     }
 }
 
-button, img, .text {
-    position: relative; /* Dibutuhkan untuk z-index */
-    z-index: 10; /* Lapisan lebih tinggi dibanding huruf */
-    max-width: 90%; /* Elemen mengikuti ukuran layar */
-    flex-shrink: 0;
-}
-
 /* Container Utama */
 .container {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap; /* Membungkus elemen jika ruang tidak cukup */
     align-items: center;
     justify-content: center;
     height: auto;
@@ -186,10 +183,39 @@ button:nth-child(2) {
 
 button:nth-child(3) {
     background-color: #ffcc00; /* Tombol kuning */
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Bayangan lembut */
+    transition: all 0.3s ease; /* Animasi untuk hover */
+}
+button:nth-child(3):hover {
+    background-color: #ffd633; /* Kuning lebih terang */
+    color: #FFFFFF; /* Warna teks lebih gelap */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Bayangan lebih tajam */
 }
 
+button:nth-child(3):active {
+    background-color: #ffb300; /* Kuning lebih gelap */
+    transform: translateY(1px); /* Bergerak sedikit ke bawah saat diklik */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Bayangan lebih kecil */
+}
+
+
 button:nth-child(4) {
-    background-color: #ffcc00;
+    background-color: #FFA726; /* Tombol oranye */
+}
+
+button:nth-child(5) {
+    background-color: #FFA726; /* Tombol oranye */
+}
+
+button:nth-child(6) {
+    background-color: #FFA726; /* Tombol oranye */
+}
+
+
+
+button:nth-child(7) {
+    background-color: #ffcc00; /* Tombol hijau */
 }
 
 #random-word, #remaining-attempts, #feedback, #article, #error-feedback, #score-result {
@@ -216,32 +242,14 @@ input[type="text"]:focus {
     border-color: #FF6F61;
     outline: none;
 }
-button:nth-child(4) {
-    background-color: #FFA726; /* Tombol oranye */
-}
-
-button:nth-child(5) {
-    background-color: #FFA726; /* Tombol oranye */
-}
-
-button:nth-child(6) {
-    background-color: #FFA726; /* Tombol oranye */
-}
-
-
-
-button:nth-child(7) {
-    background-color: #ffcc00; /* Tombol hijau */
-}
 /* Gaya untuk tombol "Kembali" */
 .btn-back {
-    background-color: #FF6F61; /* Warna merah muda cerah */
+    background-color: #FFa726; /* Warna merah muda cerah */
     color: #FFFFFF; /* Warna teks putih */
     padding: 10px 20px;
     font-size: 1em;
     font-family: 'Comic Sans MS', Arial, sans-serif; /* Font ceria */
-    border: none;
-    border-radius: 10px; /* Membuat sudut melengkung */
+    border-radius: 15px; /* Membuat sudut melengkung */
     cursor: pointer;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Bayangan lembut */
     transition: transform 0.2s, background-color 0.3s;
@@ -279,46 +287,67 @@ button:nth-child(7) {
 
 /* Responsif */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 1.5rem;
+    .container {
+        max-width: 500px; /* Sesuaikan lebar */
+        margin: 0 auto; /* Pusatkan kontainer */
+    }
+    #random-word, #feedback, #remaining-attempts, #remaining-attemptss, #article, #error-feedback, #score-result {
+        font-size: 1.5em;
+    }
+    #background-page {
+        min-width: 90%;
+    }
+
+    h1, h2 {
+        font-size: 1.rem;
     }
     img {
-        width: 120px;
+        width: 140px;
     }
     button {
         font-size: 0.9em;
+        padding: 12px 20px;
     }
     input[type="text"] {
         font-size: 0.9em;
+        padding: 8px;
+        width: 50%; /* Input mengambil seluruh lebar layar */
     }
     .slider{
-        height: 6px;
-    }
-    .text-tts {
-        margin: 20px;
-    }
-    .text-music{
-        margin: 20px;
+        width: 2px;
+        height: 60%;
+        margin-left: 25px;
     }
     body {
         font-size: 16px;
     }
-    .container {
-        max-width: 300px;
-        width: 300px;
+    .btn-back {
+        padding: 10px 50px;
+        font-size: 0.8em;
+    }
+    button:nth-child(6){
+        margin-left:28px;
+    }
+    #play-music-btn {
+        padding: 10px 40px;
     }
 }
 
 
+
 @media (min-width: 769px) {
-    h1 {
+    h1, h2 {
         font-size: 1.5rem;
     }
     img {
         width: 120px;
     }
-    button {
+    .btn-back {
+        padding: 10px 50px;
         font-size: 0.9em;
+    }
+    button {
+        font-size: 1.2rem;
     }
     input[type="text"] {
         font-size: 0.9em;
@@ -331,6 +360,67 @@ button:nth-child(7) {
     }
     body {
         font-size: 16px;
+    }
+    button:nth-child(5){
+        padding: 10px 40px;
+        font-size: 1.2em;
+    }
+    button:nth-child(6){
+        padding: 10px 30px;
+        padding-right: 34px;
+        margin-left: 5px;
+        text-align:center;
+    }
+    button:nth-child(3){
+        padding: 10px 21px;
+        margin-right:7px;
+    }
+}
+
+/* Responsif untuk layar sangat kecil (ponsel dengan layar sempit) */
+@media (max-width: 480px) {
+    #random-word, #feedback, #remaining-attempts {
+        font-size: 1em;  /* Ukuran font lebih kecil pada perangkat kecil */
+    }
+
+    #word-image {
+        max-width: 70%; /* Gambar lebih kecil untuk layar yang lebih kecil */
+    }
+    body {
+        font-size: 14px;
+    }
+    .container {
+        max-width: 400px; /* Sesuaikan lebar */
+        margin: 0 auto; /* Pusatkan kontainer */
+    }
+    img {
+        width: 80px; /* Gambar lebih kecil lagi */
+    }
+    button {
+        font-size: 0.8em;
+        padding:9px 13px;
+    }
+    input[type="text"] {
+        font-size: 0.8em;
+        padding: 7px;
+        width: 63%; /* Input mengambil seluruh lebar layar */
+    }
+    h1, h2 {
+        font-size: 1.3rem; /* Ukuran judul lebih kecil */
+    }
+    .slider {
+        width: 70%; /* Lebar slider lebih kecil */
+        height: 8px;
+    }
+    .btn-back {
+        padding: 9px 30px;
+        font-size: 0.8em;
+    }
+    button:nth-child(6){
+        margin-left:22px;
+    }
+    #play-music-btn {
+        padding: 10px 30px;
     }
 }
 
@@ -352,6 +442,7 @@ button:nth-child(7) {
     padding: 20px;
     font-size: 1.5em;
 }
+
 
 #restart-button-check-eror {
     padding: 10px 20px;
@@ -422,11 +513,50 @@ button:nth-child(7) {
 
 .slider {
     -webkit-appearance: none;
+    appearance: none;
     border-radius: 11px;
-    height:  25px;
+    height: 25px;
     width: 45%;
-    background: linear-gradient(90deg, #4CAF50, #2196F3); /* Jalur slider dengan gradien */
+    background: #d9d9d9; /* Abu-abu terang */
+    transition: background 0.3s ease; /* Animasi warna jalur */
 }
+
+.slider:hover {
+    background: linear-gradient(to right, #4f4f4f, #d9d9d9); /* Gradien animasi */
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #4f4f4f; /* Abu-abu gelap */
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease; /* Animasi transform dan warna */
+}
+
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2); /* Membesar saat hover */
+    background: #555; /* Warna lebih terang */
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #4f4f4f; /* Abu-abu gelap */
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease; /* Animasi transform dan warna */
+}
+
+.slider::-moz-range-thumb:hover {
+    transform: scale(1.2); /* Membesar saat hover */
+    background: #555; /* Warna lebih terang */
+}
+
 
 
 
