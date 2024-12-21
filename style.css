@@ -295,16 +295,17 @@ button:nth-child(7) {
         height: 6px;
     }
     .text-tts {
-        margin: 30px;
+        margin: 20px;
     }
     .text-music{
-        margin: 30px;
+        margin: 20px;
     }
     body {
         font-size: 16px;
     }
     .container {
         max-width: 300px;
+        width: 300px;
     }
 }
 
