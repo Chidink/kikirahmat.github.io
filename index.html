@@ -64,8 +64,8 @@
                 <h1>Pengaturan Musik dan Suara</h1>
                 <!-- Volume control -->
                 <div class="volume-container">
-                    <label for="music-volume">Volume Music:</label>
-                    <input type="range" id="music-volume" min="0" max="1" step="0.1" value="1">
+                    <label for="music-volume" class="text-music">Volume Music:</label>
+                    <input type="range" class="slider" id="music-volume" min="0" max="1" step="0.1" value="1">
                     <span id="volume-value">  100%</span>
                 </div>
 
@@ -73,8 +73,8 @@
 
                 <!-- Pengaturan Volume TTS -->
                 <div class="tts-container">
-                    <label for="tts-volume">Volume TTS:</label>
-                    <input type="range" id="tts-volume" min="0" max="1" step="0.1" value="1">
+                    <label for="tts-volume" class="text-tts">Volume TTS :</label>
+                    <input type="range" class="slider" id="tts-volume" min="0" max="1" step="0.1" value="1">
                     <span id="volume-value2">  100%</span>
                 </div>
                 
@@ -117,18 +117,18 @@
 
             <!-- Mini Game Tebak Kata Terjemahan -->
             <div id="guess-game" class="page">
-                <h2>Tebak Kata Terjemahan</h2>
-                <div class="image-container">
-                    <img id="word-image" src="" alt="Gambar kata" />
-                </div>
-                <p id="random-word"> Kata: </p>
-                <p id="feedback"></p>
-                <input type="text" id="user-input" placeholder="Masukkan Terjemahan">
-                <button onclick="playButtonSoundAsync(); checkTranslation()">Submit</button>
-                <button onclick="playButtonAndSpeak()">🔊 Dengar Pelafalan</button>
-                <p id="remaining-attempts"></p> <!-- Elemen untuk sisa kesempatan menebak -->
-                <button class="btn-back" onclick="nextWord(); playButtonAndSpeak()">Next Word</button>
-                <button class="btn-back" onclick="playButtonSoundAsync(); showPage('game-selection')">Kembali ke Menu</button>
+                    <h2>Tebak Kata Terjemahan</h2>
+                    <div class="image-container">
+                        <img id="word-image" src="" alt="Gambar kata" />
+                    </div>
+                    <p id="random-word"> Kata: </p>
+                    <p id="feedback"></p>
+                    <input type="text" id="user-input" placeholder="Masukkan Terjemahan">
+                    <button onclick="playButtonSoundAsync(); checkTranslation()">Submit</button>
+                    <button onclick="playButtonAndSpeak()">🔊 Dengar Pelafalan</button>
+                    <p id="remaining-attempts"></p> <!-- Elemen untuk sisa kesempatan menebak -->
+                    <button class="btn-back" onclick="nextWord(); playButtonAndSpeak()">Next Word</button>
+                    <button class="btn-back" onclick="playButtonSoundAsync(); showPage('game-selection')">Kembali ke Menu</button>
             </div>
 
             <!-- Mini Game Deteksi Kesalahan Artikel -->
