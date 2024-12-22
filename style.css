@@ -382,7 +382,7 @@ input[type="text"]:focus {
 
 
 /* Responsif untuk layar kecil (maksimal 546px) */
-@media (max-width: 548px) {
+@media (max-width: 560px) {
     #random-word, #feedback, #remaining-attempts {
         font-size: 1.1em; /* Ukuran font sedikit lebih besar dari 480px */
     }
