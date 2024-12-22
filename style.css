@@ -377,6 +377,74 @@ input[type="text"]:focus {
     }
 }
 
+
+
+
+
+/* Responsif untuk layar kecil (maksimal 546px) */
+@media (max-width: 546px) {
+    #random-word, #feedback, #remaining-attempts {
+        font-size: 1.1em; /* Ukuran font sedikit lebih besar dari 480px */
+    }
+
+    #word-image {
+        max-width: 75%; /* Gambar lebih kecil */
+    }
+
+    body {
+        font-size: 15px;
+    }
+
+    .container {
+        max-width: 450px; /* Sesuaikan lebar */
+        margin: 0 auto; /* Pusatkan kontainer */
+    }
+
+    img {
+        width: 90px; /* Gambar lebih besar dibanding 480px */
+    }
+
+    button {
+        font-size: 0.9em;
+        padding: 10px 15px;
+    }
+
+    input[type="text"] {
+        font-size: 0.85em;
+        padding: 8px;
+        width: 70%; /* Input sedikit lebih lebar */
+    }
+
+    h1, h2 {
+        font-size: 1.4rem; /* Ukuran judul sedikit lebih besar */
+    }
+
+    .slider {
+        width: 75%; /* Lebar slider sedikit lebih besar */
+        height: 9px;
+    }
+
+    .btn-back {
+        padding: 10px 35px;
+        font-size: 0.85em;
+    }
+
+    button:nth-child(6) {
+        margin-left: 25px; /* Atur margin kiri tombol */
+    }
+
+    #play-music-btn {
+        padding: 11px 35px;
+    }
+
+    /* Gaya tambahan jika diperlukan */
+    #play-music-btn:hover {
+        background-color: #ffb300; /* Warna hover untuk tombol */
+    }
+}
+
+
+
 /* Responsif untuk layar sangat kecil (ponsel dengan layar sempit) */
 @media (max-width: 480px) {
     #random-word, #feedback, #remaining-attempts {
