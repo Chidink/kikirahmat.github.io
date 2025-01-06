@@ -65,7 +65,7 @@ async function startGuessGame() {
     const availableWords = Object.keys(words).filter(word => !usedWords.includes(word));
     currentWord = availableWords[Math.floor(Math.random() * availableWords.length)];
     // Tampilkan kata baru di halaman
-    document.getElementById('random-word').textContent = ` ${currentWord}`;
+    document.getElementById('random-word').textContent = `Kata: ${currentWord}`;
     document.getElementById('user-input').value = "";
     document.getElementById('feedback').textContent = "";
     console.log("Kata yang diambil: ", words);
